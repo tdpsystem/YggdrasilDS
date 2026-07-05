@@ -1,0 +1,40 @@
+# Build outputs
+build/
+builds/
+dist/
+bin/
+obj/
+
+# Save files
+saves/
+*.sav
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Compiled binaries
+*.elf
+*.nds
+*.map
+*.o
+*.a
