@@ -4,10 +4,13 @@
 #include <stdbool.h>
 
 void engineInit(void);
+
 void engineUpdate(void);
+
 void engineRender(void);
 
 void engineRequestQuit(void);
+
 bool engineIsRunning(void);
 
 #endif

@@ -6,8 +6,7 @@ static u32 timerSecs = 0;
 static float timerDelta = 1.0f / 60.0f;
 static float timerTotal = 0.0f;
 
-void timerInit(void)
-{
+void timerInit(void) {
     timerFrames = 0;
     timerSecs = 0;
 
@@ -15,8 +14,7 @@ void timerInit(void)
     timerTotal = 0.0f;
 }
 
-void timerUpdate(void)
-{
+void timerUpdate(void) {
     timerFrames++;
 
     timerDelta = 1.0f / 60.0f;
@@ -25,22 +23,18 @@ void timerUpdate(void)
     timerSecs = timerFrames / 60;
 }
 
-u32 timerFrameCount(void)
-{
+u32 timerFrameCount(void) {
     return timerFrames;
 }
 
-u32 timerSeconds(void)
-{
+u32 timerSeconds(void) {
     return timerSecs;
 }
 
-float timerDeltaTime(void)
-{
+float timerDeltaTime(void) {
     return timerDelta;
 }
 
-float timerTotalTime(void)
-{
+float timerTotalTime(void) {
     return timerTotal;
 }

@@ -5,8 +5,7 @@ static u32 held = 0;
 static u32 down = 0;
 static u32 up = 0;
 
-void inputInit(void)
-{
+void inputInit(void) {
     held = 0;
     down = 0;
     up = 0;
@@ -14,8 +13,7 @@ void inputInit(void)
     touchRead(&touch);
 }
 
-void inputUpdate(void)
-{
+void inputUpdate(void) {
     scanKeys();
 
     held = keysHeld();
@@ -25,37 +23,30 @@ void inputUpdate(void)
     touchRead(&touch);
 }
 
-u32 inputHeld(void)
-{
+u32 inputHeld(void) {
     return held;
 }
 
-u32 inputDown(void)
-{
+u32 inputDown(void) {
     return down;
 }
 
-u32 inputUp(void)
-{
+u32 inputUp(void) {
     return up;
 }
 
-bool inputIsHeld(u32 key)
-{
+bool inputIsHeld(u32 key) {
     return (held & key) != 0;
 }
 
-bool inputIsPressed(u32 key)
-{
+bool inputIsPressed(u32 key) {
     return (down & key) != 0;
 }
 
-bool inputIsReleased(u32 key)
-{
+bool inputIsReleased(u32 key) {
     return (up & key) != 0;
 }
 
-touchPosition inputTouch(void)
-{
+touchPosition inputTouch(void) {
     return touch;
 }

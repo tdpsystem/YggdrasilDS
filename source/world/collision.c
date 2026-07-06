@@ -79,7 +79,7 @@ void collisionMoveEntity(const TileMap *map, Entity *entity, int dx, int dy) {
         return;
     }
 
-    if (collisionCanMoveEntity(map, entity,dx, 0)) {
+    if (collisionCanMoveEntity(map, entity, dx, 0)) {
         entityMove(entity, 0, dy);
     }
 }

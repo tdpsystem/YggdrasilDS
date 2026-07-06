@@ -1,21 +1,17 @@
 #include "graphics/video.h"
 #include "util/debug.h"
 
-void videoInit(void)
-{
+void videoInit(void) {
     consoleDemoInit();
 }
 
-void videoBeginFrame(void)
-{
+void videoBeginFrame(void) {
 }
 
-void videoEndFrame(void)
-{
+void videoEndFrame(void) {
     swiWaitForVBlank();
 }
 
-void videoClearConsole(void)
-{
+void videoClearConsole(void) {
     debugClear();
 }

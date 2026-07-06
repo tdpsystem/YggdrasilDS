@@ -12,15 +12,19 @@ typedef struct Player {
 } Player;
 
 void playerInit(Player *player);
+
 void playerUpdate(Player *player);
 
 void playerSetPosition(Player *player, int x, int y);
+
 void playerMove(Player *player, int dx, int dy);
 
 int playerX(const Player *player);
+
 int playerY(const Player *player);
 
 Entity *playerEntity(Player *player);
+
 const Entity *playerEntityConst(const Player *player);
 
 #endif

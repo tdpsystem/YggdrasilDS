@@ -10,8 +10,7 @@
 
 static bool engineRunning = true;
 
-void engineInit(void)
-{
+void engineInit(void) {
     engineRunning = true;
 
     videoInit();
@@ -24,16 +23,14 @@ void engineInit(void)
     gameInit();
 }
 
-void engineUpdate(void)
-{
+void engineUpdate(void) {
     inputUpdate();
     timerUpdate();
 
     gameUpdate();
 }
 
-void engineRender(void)
-{
+void engineRender(void) {
     videoBeginFrame();
 
     gameRender();
@@ -41,13 +38,11 @@ void engineRender(void)
     videoEndFrame();
 }
 
-void engineRequestQuit(void)
-{
-    assetManagerShutdown(); 
+void engineRequestQuit(void) {
+    assetManagerShutdown();
     engineRunning = false;
 }
 
-bool engineIsRunning(void)
-{
+bool engineIsRunning(void) {
     return engineRunning;
 }

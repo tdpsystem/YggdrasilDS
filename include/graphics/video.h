@@ -6,6 +6,7 @@
 void videoInit(void);
 
 void videoBeginFrame(void);
+
 void videoEndFrame(void);
 
 void videoClearConsole(void);

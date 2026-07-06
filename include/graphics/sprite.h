@@ -26,20 +26,29 @@ typedef struct Sprite {
 } Sprite;
 
 void spriteInit(Sprite *sprite);
+
 void spriteSetPosition(Sprite *sprite, int x, int y);
+
 void spriteMove(Sprite *sprite, int dx, int dy);
+
 void spriteSetSize(Sprite *sprite, int width, int height);
 
 void spriteSetFrame(Sprite *sprite, int frame);
+
 void spriteSetFrameCount(Sprite *sprite, int frameCount);
 
 void spriteSetVisible(Sprite *sprite, bool visible);
+
 void spriteSetFlip(Sprite *sprite, SpriteFlip flip);
 
 int spriteX(const Sprite *sprite);
+
 int spriteY(const Sprite *sprite);
+
 int spriteWidth(const Sprite *sprite);
+
 int spriteHeight(const Sprite *sprite);
+
 int spriteFrame(const Sprite *sprite);
 
 bool spriteIsVisible(const Sprite *sprite);

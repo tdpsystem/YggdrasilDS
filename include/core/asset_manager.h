@@ -25,9 +25,11 @@ typedef struct Asset {
 } Asset;
 
 void assetManagerInit(void);
+
 void assetManagerShutdown(void);
 
 bool assetLoad(Asset *asset);
+
 void assetUnload(Asset *asset);
 
 bool assetIsLoaded(const Asset *asset);

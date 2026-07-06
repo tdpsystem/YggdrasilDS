@@ -7,8 +7,7 @@
 #include "core/states/title_state.h"
 #include "core/states/world_state.h"
 
-void gameInit(void)
-{
+void gameInit(void) {
     stateInit();
 
     stateRegister(GAME_STATE_BOOT, bootStateCreate());
@@ -20,12 +19,10 @@ void gameInit(void)
     stateChange(GAME_STATE_TITLE);
 }
 
-void gameUpdate(void)
-{
+void gameUpdate(void) {
     stateUpdate();
 }
 
-void gameRender(void)
-{
+void gameRender(void) {
     stateRender();
 }

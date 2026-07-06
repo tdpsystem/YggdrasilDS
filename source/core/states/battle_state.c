@@ -21,11 +21,9 @@ static void battleUpdate(void) {
 }
 
 static void battleRender(void) {
-
 }
 
 static void battleExit(void) {
-
 }
 
 GameState battleStateCreate(void) {

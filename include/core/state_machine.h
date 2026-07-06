@@ -1,8 +1,7 @@
 #ifndef YGG_CORE_STATE_H
 #define YGG_CORE_STATE_H
 
-typedef enum GameStateId
-{
+typedef enum GameStateId {
     GAME_STATE_BOOT = 0,
     GAME_STATE_TITLE,
     GAME_STATE_WORLD,
@@ -12,18 +11,24 @@ typedef enum GameStateId
     GAME_STATE_COUNT
 } GameStateId;
 
-typedef struct GameState
-{
+typedef struct GameState {
     void (*enter)(void);
+
     void (*update)(void);
+
     void (*render)(void);
+
     void (*exit)(void);
 } GameState;
 
 void stateInit(void);
+
 void stateRegister(GameStateId id, GameState state);
+
 void stateChange(GameStateId id);
+
 void stateUpdate(void);
+
 void stateRender(void);
 
 GameStateId stateCurrent(void);

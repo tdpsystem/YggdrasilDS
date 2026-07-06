@@ -21,11 +21,9 @@ static void menuUpdate(void) {
 }
 
 static void menuRender(void) {
-
 }
 
 static void menuExit(void) {
-
 }
 
 GameState menuStateCreate(void) {

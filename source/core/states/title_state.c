@@ -22,11 +22,9 @@ static void titleUpdate(void) {
 }
 
 static void titleRender(void) {
-
 }
 
 static void titleExit(void) {
-
 }
 
 GameState titleStateCreate(void) {

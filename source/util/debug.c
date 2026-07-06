@@ -6,8 +6,7 @@
 
 static bool debugEnabled = true;
 
-void debugInit(void)
-{
+void debugInit(void) {
 #ifndef NDEBUG
     debugEnabled = true;
 #else
@@ -15,30 +14,24 @@ void debugInit(void)
 #endif
 }
 
-void debugClear(void)
-{
-    if (!debugEnabled)
-    {
+void debugClear(void) {
+    if (!debugEnabled) {
         return;
     }
 
     consoleClear();
 }
 
-void debugPrint(const char *text)
-{
-    if (!debugEnabled || text == NULL)
-    {
+void debugPrint(const char *text) {
+    if (!debugEnabled || text == NULL) {
         return;
     }
 
     iprintf("%s", text);
 }
 
-void debugPrintf(const char *format, ...)
-{
-    if (!debugEnabled || format == NULL)
-    {
+void debugPrintf(const char *format, ...) {
+    if (!debugEnabled || format == NULL) {
         return;
     }
 
@@ -48,12 +41,10 @@ void debugPrintf(const char *format, ...)
     va_end(args);
 }
 
-void debugSetEnabled(bool enabled)
-{
+void debugSetEnabled(bool enabled) {
     debugEnabled = enabled;
 }
 
-bool debugIsEnabled(void)
-{
+bool debugIsEnabled(void) {
     return debugEnabled;
 }

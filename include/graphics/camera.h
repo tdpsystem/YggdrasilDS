@@ -17,13 +17,17 @@ typedef struct Camera {
 } Camera;
 
 void cameraInit(Camera *camera);
+
 void cameraSetPosition(Camera *camera, int x, int y);
+
 void cameraSetTarget(Camera *camera, int x, int y);
+
 void cameraSetBounds(Camera *camera, int minX, int minY, int maxX, int maxY);
 
 void cameraUpdate(Camera *camera);
 
 int cameraX(const Camera *camera);
+
 int cameraY(const Camera *camera);
 
 #endif

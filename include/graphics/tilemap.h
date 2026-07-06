@@ -19,6 +19,7 @@ typedef struct TileMap {
 void tileMapInit(TileMap *map);
 
 Tile tileMapGet(const TileMap *map, int x, int y);
+
 void tileMapSet(TileMap *map, int x, int y, Tile tile);
 
 bool tileMapIsInside(const TileMap *map, int x, int y);

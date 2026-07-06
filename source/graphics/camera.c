@@ -72,14 +72,12 @@ void cameraUpdate(Camera *camera) {
 
     if (camera->x < camera->targetX) {
         camera->x++;
-    }
-    else if (camera->x > camera->targetX) {
+    } else if (camera->x > camera->targetX) {
         camera->x--;
     }
     if (camera->y < camera->targetY) {
         camera->y++;
-    }
-    else if (camera->y > camera->targetY) {
+    } else if (camera->y > camera->targetY) {
         camera->y--;
     }
 }

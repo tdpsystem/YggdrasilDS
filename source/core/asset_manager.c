@@ -2,18 +2,14 @@
 
 #include <stddef.h>
 
-void assetManagerInit(void)
-{
+void assetManagerInit(void) {
 }
 
-void assetManagerShutdown(void)
-{
+void assetManagerShutdown(void) {
 }
 
-bool assetLoad(Asset *asset)
-{
-    if (asset == NULL)
-    {
+bool assetLoad(Asset *asset) {
+    if (asset == NULL) {
         return false;
     }
 
@@ -22,20 +18,16 @@ bool assetLoad(Asset *asset)
     return true;
 }
 
-void assetUnload(Asset *asset)
-{
-    if (asset == NULL)
-    {
+void assetUnload(Asset *asset) {
+    if (asset == NULL) {
         return;
     }
 
     asset->loaded = false;
 }
 
-bool assetIsLoaded(const Asset *asset)
-{
-    if (asset == NULL)
-    {
+bool assetIsLoaded(const Asset *asset) {
+    if (asset == NULL) {
         return false;
     }
 

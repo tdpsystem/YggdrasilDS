@@ -2,12 +2,10 @@
 
 #include "core/engine.h"
 
-int main(void)
-{
+int main(void) {
     engineInit();
 
-    while (engineIsRunning())
-    {
+    while (engineIsRunning()) {
         engineUpdate();
         engineRender();
     }
