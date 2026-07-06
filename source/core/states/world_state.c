@@ -13,12 +13,35 @@
 
 static Camera gameCamera;
 static Player player;
+static TileMap worldMap;
 
 static void worldEnter(void) {
     videoClearConsole();
 
     cameraInit(&gameCamera);
     playerInit(&player);
+
+    tileRendererInit();
+    tileMapInit(&worldMap);
+
+    for (int y = 0; y < TILEMAP_HEIGHT; y++)
+    {
+        for (int x = 0; x < TILEMAP_WIDTH; x++)
+        {
+            if (x == 0 || y == 0 || x == TILEMAP_WIDTH - 1 || y == TILEMAP_HEIGHT - 1)
+            {
+                tileMapSet(&worldMap, x, y, 1);
+            }
+            else if ((x + y) % 2 == 0)
+            {
+                tileMapSet(&worldMap, x, y, 2);
+            }
+            else
+            {
+                tileMapSet(&worldMap, x, y, 0);
+            }
+        }
+    }
 
     cameraSetPosition(
         &gameCamera,
@@ -51,6 +74,7 @@ static void worldUpdate(void) {
 }
 
 static void worldRender(void) {
+    tileRendererRender(&worldMap, &gameCamera);
 }
 
 static void worldExit(void) {
