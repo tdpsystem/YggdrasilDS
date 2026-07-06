@@ -4,22 +4,50 @@
 #include "core\states\world_state.h"
 #include "core\state_machine.h"
 #include "graphics\video.h"
+#include "graphics\camera.h"
 #include "input\input.h"
 #include "util\debug.h"
+#include "world\player.h"
 
-static void worldEnter(void) {
+static Camera gameCamera;
+static Player player;
+
+static void worldEnter(void)
+{
     videoClearConsole();
 
+    cameraInit(&gameCamera);
+    playerInit(&player);
+
+    cameraSetPosition(
+        &gameCamera,
+        playerX(&player),
+        playerY(&player)
+    );
+
     debugPrint("World State\n");
-    debugPrint("Press X for Menu\n");
-    debugPrint("Press Y for Battle\n");
+    debugPrint("Move with D-Pad\n");
 }
 
-static void worldUpdate(void) {
-    if (inputIsPressed(KEY_X)) {
+static void worldUpdate(void)
+{
+    playerUpdate(&player);
+
+    cameraSetTarget(
+        &gameCamera,
+        playerX(&player),
+        playerY(&player)
+    );
+
+    cameraUpdate(&gameCamera);
+
+    if (inputIsPressed(KEY_X))
+    {
         stateChange(GAME_STATE_MENU);
     }
-    if (inputIsPressed(KEY_Y)) {
+
+    if (inputIsPressed(KEY_Y))
+    {
         stateChange(GAME_STATE_BATTLE);
     }
 }
