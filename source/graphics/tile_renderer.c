@@ -1,4 +1,4 @@
-#include "graphics\tileRenderer.h"
+#include "graphics\tile_Renderer.h"
 
 #include <nds.h>
 #include <stddef.h>
@@ -19,7 +19,7 @@ static u16 tileColor(Tile tile) {
         case 3:
             return RGB15(0, 0, 18);
         default:
-            return RGB15(4, 20, 4)
+            return RGB15(4, 20, 4);
     }
 }
 

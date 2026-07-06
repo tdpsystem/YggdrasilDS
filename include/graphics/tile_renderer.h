@@ -1,10 +1,9 @@
 #ifndef YGG_GRAPHICS_TILE_RENDERER_H
 #define YGG_GRAPHICS_TILE_RENDERER_H
 
-#include "camera.h"
-#include "tilemap.h"
+
 #include "graphics\camera.h"
-#include "graphics\tilemp.h"
+#include "graphics\tilemap.h"
 
 void tileRendererInit(void);
 
