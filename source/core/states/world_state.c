@@ -5,6 +5,8 @@
 #include "core\state_machine.h"
 #include "graphics\video.h"
 #include "graphics\camera.h"
+#include "graphics\tile_renderer.h"
+#include "graphics\tilemap.h"
 #include "input\input.h"
 #include "util\debug.h"
 #include "world\player.h"
@@ -12,8 +14,7 @@
 static Camera gameCamera;
 static Player player;
 
-static void worldEnter(void)
-{
+static void worldEnter(void) {
     videoClearConsole();
 
     cameraInit(&gameCamera);
@@ -29,8 +30,7 @@ static void worldEnter(void)
     debugPrint("Move with D-Pad\n");
 }
 
-static void worldUpdate(void)
-{
+static void worldUpdate(void) {
     playerUpdate(&player);
 
     cameraSetTarget(
@@ -41,23 +41,19 @@ static void worldUpdate(void)
 
     cameraUpdate(&gameCamera);
 
-    if (inputIsPressed(KEY_X))
-    {
+    if (inputIsPressed(KEY_X)) {
         stateChange(GAME_STATE_MENU);
     }
 
-    if (inputIsPressed(KEY_Y))
-    {
+    if (inputIsPressed(KEY_Y)) {
         stateChange(GAME_STATE_BATTLE);
     }
 }
 
 static void worldRender(void) {
-
 }
 
 static void worldExit(void) {
-
 }
 
 GameState worldStateCreate(void) {
