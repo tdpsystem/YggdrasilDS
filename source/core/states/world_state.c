@@ -7,6 +7,7 @@
 #include "graphics\camera.h"
 #include "graphics\tile_renderer.h"
 #include "graphics\tilemap.h"
+#include "graphics/entity_renderer.h"
 #include "input\input.h"
 #include "util\debug.h"
 #include "world\player.h"
@@ -22,6 +23,7 @@ static void worldEnter(void) {
     playerInit(&player);
 
     tileRendererInit();
+    entityRendererInit();
     tileMapInit(&worldMap);
 
     for (int y = 0; y < TILEMAP_HEIGHT; y++)
@@ -75,6 +77,7 @@ static void worldUpdate(void) {
 
 static void worldRender(void) {
     tileRendererRender(&worldMap, &gameCamera);
+    entityRendererRender(playerEntity(&player), &gameCamera);
 }
 
 static void worldExit(void) {
