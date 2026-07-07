@@ -15,8 +15,6 @@ void worldInit(World *world);
 void worldUpdate(World *world);
 void worldRender(World *world);
 
-void worldLoadTestMap(World *world);
-
 Camera *worldCamera(World *world);
 TileMap *worldTileMap(World *world);
 Player *worldPlayer(World *world);
