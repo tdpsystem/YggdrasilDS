@@ -2,9 +2,15 @@
 
 #include <stddef.h>
 
-#include "graphics\entity_renderer.h"
+#include "graphics\player_renderer.h"
 #include "graphics\tile_renderer.h"
 #include "world\collision.h"
+
+#define SCREEN_WIDTH   256
+#define SCREEN_HEIGHT  192
+
+#define SCREEN_CENTER_X (SCREEN_WIDTH / 2)
+#define SCREEN_CENTER_Y (SCREEN_HEIGHT / 2)
 
 void worldInit(World *world) {
     if (world == NULL) {
@@ -21,14 +27,14 @@ void worldInit(World *world) {
         &world->camera,
         0,
         0,
-        TILEMAP_WIDTH * TILE_SIZE - 256,
-        TILEMAP_HEIGHT * TILE_SIZE - 192
+        TILEMAP_WIDTH * TILE_SIZE - SCREEN_WIDTH,
+        TILEMAP_HEIGHT * TILE_SIZE - SCREEN_HEIGHT
     );
 
     cameraSetPosition(
         &world->camera,
-        playerX(&world->player) - 128,
-        playerY(&world->player) - 96
+        playerX(&world->player) - SCREEN_CENTER_X,
+        playerY(&world->player) - SCREEN_CENTER_Y
     );
 }
 
@@ -41,11 +47,17 @@ void worldUpdate(World *world) {
 
     cameraSetTarget(
         &world->camera,
-        playerX(&world->player) -128,
-        playerY(&world->player) - 96
+        playerX(&world->player) - SCREEN_CENTER_X,
+        playerY(&world->player) - SCREEN_CENTER_Y
     );
 
     cameraUpdate(&world->camera);
+
+    cameraSetPosition(
+        &world->camera,
+        cameraX(&world->camera),
+        cameraY(&world->camera)
+    );
 }
 
 void worldRender(World *world) {
@@ -54,7 +66,7 @@ void worldRender(World *world) {
     }
 
     tileRendererRender(&world->tileMap, &world->camera);
-    entityRendererRender(playerEntity(&world->player), &world->camera);
+    playerRendererRender(&world->player, &world->camera);
 }
 
 void worldLoadTestMap(World *world) {
@@ -64,15 +76,13 @@ void worldLoadTestMap(World *world) {
 
     tileMapInit(&world->tileMap);
 
-    for (int y =0; y < TILEMAP_HEIGHT; y++) {
+    for (int y = 0; y < TILEMAP_HEIGHT; y++) {
         for (int x = 0; x < TILEMAP_WIDTH; x++) {
-            if (x == 0 || y == 0 || x == TILEMAP_WIDTH - 1 || y == TILEMAP_HEIGHT -1) {
+            if (x == 0 || y == 0 || x == TILEMAP_WIDTH - 1 || y == TILEMAP_HEIGHT - 1) {
                 tileMapSet(&world->tileMap, x, y, 1);
-            }
-            else if ((x + y) % 2 == 0) {
+            } else if ((x + y) % 2 == 0) {
                 tileMapSet(&world->tileMap, x, y, 2);
-            }
-            else {
+            } else {
                 tileMapSet(&world->tileMap, x, y, 0);
             }
         }

@@ -70,16 +70,8 @@ void cameraUpdate(Camera *camera) {
         return;
     }
 
-    if (camera->x < camera->targetX) {
-        camera->x++;
-    } else if (camera->x > camera->targetX) {
-        camera->x--;
-    }
-    if (camera->y < camera->targetY) {
-        camera->y++;
-    } else if (camera->y > camera->targetY) {
-        camera->y--;
-    }
+    camera->x += (camera->targetX - camera->x) / 8;
+    camera->y += (camera->targetY - camera->y) / 8;
 }
 
 int cameraX(const Camera *camera) {

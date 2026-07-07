@@ -4,6 +4,7 @@
 #include "core/state_machine.h"
 
 #include "graphics/entity_renderer.h"
+#include "graphics/player_renderer.h"
 #include "graphics/tile_renderer.h"
 #include "graphics/video.h"
 
@@ -13,12 +14,11 @@
 
 static World world;
 
-static void worldStateEnter(void)
-{
+static void worldStateEnter(void) {
     videoClearConsole();
 
     tileRendererInit();
-    entityRendererInit();
+    playerRendererInit();
 
     worldInit(&world);
 
@@ -28,32 +28,26 @@ static void worldStateEnter(void)
     debugPrint("Y = Battle\n");
 }
 
-static void worldStateUpdate(void)
-{
+static void worldStateUpdate(void) {
     worldUpdate(&world);
 
-    if (inputIsPressed(KEY_X))
-    {
+    if (inputIsPressed(KEY_X)) {
         stateChange(GAME_STATE_MENU);
     }
 
-    if (inputIsPressed(KEY_Y))
-    {
+    if (inputIsPressed(KEY_Y)) {
         stateChange(GAME_STATE_BATTLE);
     }
 }
 
-static void worldStateRender(void)
-{
+static void worldStateRender(void) {
     worldRender(&world);
 }
 
-static void worldStateExit(void)
-{
+static void worldStateExit(void) {
 }
 
-GameState worldStateCreate(void)
-{
+GameState worldStateCreate(void) {
     GameState state;
 
     state.enter = worldStateEnter;
