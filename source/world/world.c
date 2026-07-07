@@ -6,11 +6,11 @@
 #include "graphics\tile_renderer.h"
 #include "world\collision.h"
 
-#define SCREEN_WIDTH   256
-#define SCREEN_HEIGHT  192
+#define WORLD_SCREEN_WIDTH   256
+#define WORLD_SCREEN_HEIGHT  192
 
-#define SCREEN_CENTER_X (SCREEN_WIDTH / 2)
-#define SCREEN_CENTER_Y (SCREEN_HEIGHT / 2)
+#define WORLD_SCREEN_CENTER_X (WORLD_SCREEN_WIDTH / 2)
+#define WORLD_SCREEN_CENTER_Y (WORLD_SCREEN_HEIGHT / 2)
 
 void worldInit(World *world) {
     if (world == NULL) {
@@ -27,14 +27,14 @@ void worldInit(World *world) {
         &world->camera,
         0,
         0,
-        TILEMAP_WIDTH * TILE_SIZE - SCREEN_WIDTH,
-        TILEMAP_HEIGHT * TILE_SIZE - SCREEN_HEIGHT
+        TILEMAP_WIDTH * TILE_SIZE - WORLD_SCREEN_WIDTH,
+        TILEMAP_HEIGHT * TILE_SIZE - WORLD_SCREEN_HEIGHT
     );
 
     cameraSetPosition(
         &world->camera,
-        playerX(&world->player) - SCREEN_CENTER_X,
-        playerY(&world->player) - SCREEN_CENTER_Y
+        playerX(&world->player) - WORLD_SCREEN_CENTER_X,
+        playerY(&world->player) - WORLD_SCREEN_CENTER_Y
     );
 }
 
@@ -47,8 +47,8 @@ void worldUpdate(World *world) {
 
     cameraSetTarget(
         &world->camera,
-        playerX(&world->player) - SCREEN_CENTER_X,
-        playerY(&world->player) - SCREEN_CENTER_Y
+        playerX(&world->player) - WORLD_SCREEN_CENTER_X,
+        playerY(&world->player) - WORLD_SCREEN_CENTER_Y
     );
 
     cameraUpdate(&world->camera);
