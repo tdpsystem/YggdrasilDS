@@ -4,6 +4,8 @@
 
 #include <nds.h>
 
+#include "world/collision.h"
+
 #include "input/input.h"
 
 void playerInit(Player *player) {
@@ -21,7 +23,7 @@ void playerInit(Player *player) {
     entitySetPosition(&player->entity, 120, 88);
 }
 
-void playerUpdate(Player *player) {
+void playerUpdate(Player *player, const TileMap *tileMap) {
     if (player == NULL) {
         return;
     }
@@ -41,8 +43,9 @@ void playerUpdate(Player *player) {
         player->facingY = -1;
     }
 
-    if (dx != 0 || dy != 0) {
-        entityMove(&player->entity, dx, dy);
+    if (dx != 0 || dy != 0)
+    {
+        collisionMoveEntity(tileMap, &player->entity, dx, dy);
     }
 
     entityUpdate(&player->entity);

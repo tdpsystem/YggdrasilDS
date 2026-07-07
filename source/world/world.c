@@ -43,7 +43,7 @@ void worldUpdate(World *world) {
         return;
     }
 
-    playerUpdate(&world->player);
+    playerUpdate(&world->player, &world->tileMap);
 
     cameraSetTarget(
         &world->camera,

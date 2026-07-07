@@ -13,7 +13,9 @@ typedef struct Player {
 
 void playerInit(Player *player);
 
-void playerUpdate(Player *player);
+struct TileMap;
+
+void playerUpdate(Player *player, const struct TileMap *tileMap);
 
 void playerSetPosition(Player *player, int x, int y);
 
