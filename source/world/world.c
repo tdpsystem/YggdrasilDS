@@ -1,12 +1,14 @@
-#include "world\world.h"
+#include "world/world.h"
 
 #include <stddef.h>
 
-#include "graphics\player_renderer.h"
-#include "graphics\tile_renderer.h"
+#include "graphics/background_renderer.h"
+#include "graphics/sprite_renderer.h"
+#include "graphics/oam_renderer.h"
 
-#include "world\collision.h"
-#include "world\map_loader.h"
+#include "world/collision.h"
+#include "world/map_loader.h"
+#include "world/entity.h"
 
 #define WORLD_SCREEN_WIDTH   256
 #define WORLD_SCREEN_HEIGHT  192
@@ -66,9 +68,11 @@ void worldRender(World *world) {
     if (world == NULL) {
         return;
     }
-
-    tileRendererRender(&world->tileMap, &world->camera);
-    playerRendererRender(&world->player, &world->camera);
+    backgroundRendererRenderTileMap(&world->tileMap, &world->camera);
+    spriteRendererRenderPlayer(&world->player, &world->camera);
+    oamRendererRenderSprite(
+        entitySprite(playerEntity(&world->player))
+    );
 }
 
 Camera *worldCamera(World *world) {

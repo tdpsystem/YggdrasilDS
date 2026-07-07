@@ -1,8 +1,15 @@
-//
-// Created by cdixo on 07/07/2026.
-//
+#ifndef YGG_GRAPHICS_OAM_RENDERER_H
+#define YGG_GRAPHICS_OAM_RENDERER_H
 
-#ifndef COMBAT_SYSTEM_MD_OAM_RENDERER_H
-#define COMBAT_SYSTEM_MD_OAM_RENDERER_H
+#include "graphics\sprite.h"
 
-#endif //COMBAT_SYSTEM_MD_OAM_RENDERER_H
+void oamRendererInit(void);
+void oamRendererShutdown(void);
+
+void oamRendererBeginFrame(void);
+void oamRendererEndFrame(void);
+
+void oamRendererRenderHero(int x, int y);
+void oamRendererRenderSprite(const Sprite *sprite);
+
+#endif

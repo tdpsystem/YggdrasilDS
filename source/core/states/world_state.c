@@ -3,22 +3,18 @@
 #include "core/states/world_state.h"
 #include "core/state_machine.h"
 
-#include "graphics/entity_renderer.h"
-#include "graphics/player_renderer.h"
-#include "graphics/tile_renderer.h"
 #include "graphics/video.h"
 
 #include "input/input.h"
+
 #include "util/debug.h"
+
 #include "world/world.h"
 
 static World world;
 
 static void worldStateEnter(void) {
     videoClearConsole();
-
-    tileRendererInit();
-    playerRendererInit();
 
     worldInit(&world);
 

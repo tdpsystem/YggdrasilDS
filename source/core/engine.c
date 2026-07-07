@@ -4,8 +4,14 @@
 #include "core/game.h"
 #include "core/timer.h"
 #include "core/asset_manager.h"
+
 #include "graphics/video.h"
+#include "graphics/oam_renderer.h"
+#include "graphics/background_renderer.h"
+#include "graphics/sprite_renderer.h"
+
 #include "input/input.h"
+
 #include "util/debug.h"
 
 static bool engineRunning = true;
@@ -17,6 +23,10 @@ void engineInit(void) {
     debugInit();
     inputInit();
     timerInit();
+
+    oamRendererInit();
+    backgroundRendererInit();
+    spriteRendererInit();
 
     assetManagerInit();
 
@@ -30,10 +40,19 @@ void engineUpdate(void) {
     gameUpdate();
 }
 
-void engineRender(void) {
+void engineRender(void)
+{
     videoBeginFrame();
 
+    backgroundRendererBeginFrame();
+    spriteRendererBeginFrame();
+    oamRendererBeginFrame();
+
     gameRender();
+
+    backgroundRendererEndFrame();
+    spriteRendererEndFrame();
+    oamRendererEndFrame();
 
     videoEndFrame();
 }
