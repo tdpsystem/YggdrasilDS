@@ -12,21 +12,23 @@
 static u16 *heroGfx = NULL;
 static bool oamReady = false;
 
-static void loadHeroPalette(void) {
-    SPRITE_PALETTE[0] = RGB15(31, 0, 31); //transparent magenta
-    SPRITE_PALETTE[1] = RGB15(31, 31, 31); //white
-    SPRITE_PALETTE[2] = RGB15(0, 0, 31); //blue
-    SPRITE_PALETTE[3] = RGB15(0, 31, 0); //green
-    SPRITE_PALETTE[4] = RGB15(31, 0, 0); //red
-    SPRITE_PALETTE[5] = RGB15(31, 31, 0); //yellow
-    SPRITE_PALETTE[6] = RGB15(10, 10, 10); //dark grey
-    SPRITE_PALETTE[7] = RGB15(20, 20, 20); //light grey
-}
+static void loadHeroPalette(void)
+{
+    SPRITE_PALETTE[0] = RGB15(31, 0, 31);
+    SPRITE_PALETTE[1] = RGB15(31, 31, 31);
+    SPRITE_PALETTE[2] = RGB15(31, 31, 31);
+    SPRITE_PALETTE[3] = RGB15(31, 31, 31);
+    SPRITE_PALETTE[4] = RGB15(31, 31, 31);
+    SPRITE_PALETTE[5] = RGB15(31, 31, 31);
+    SPRITE_PALETTE[6] = RGB15(31, 31, 31);
+    SPRITE_PALETTE[7] = RGB15(31, 31, 31);
+} //temporary palette
 
-void oamRendererInit(void) {
-    oamInit(&oamMain, SpriteMapping_1D_32, false);
-
+void oamRendererInit(void)
+{
     vramSetBankG(VRAM_G_MAIN_SPRITE);
+
+    oamInit(&oamMain, SpriteMapping_1D_32, false);
 
     loadHeroPalette();
 
@@ -36,7 +38,8 @@ void oamRendererInit(void) {
         HERO_SPRITE_COLOR_FORMAT
     );
 
-    if (heroGfx != NULL) {
+    if (heroGfx != NULL)
+    {
         dmaCopy(
             hero_placeholderTiles,
             heroGfx,
@@ -45,15 +48,6 @@ void oamRendererInit(void) {
     }
 
     oamReady = true;
-}
-
-void oamRendererShutdown(void) {
-    if (heroGfx != NULL) {
-        oamFreeGfx(&oamMain, heroGfx);
-        heroGfx = NULL;
-    }
-
-    oamReady = false;
 }
 
 void oamRendererBeginFrame(void) {

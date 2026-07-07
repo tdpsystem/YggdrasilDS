@@ -23,32 +23,46 @@ void playerInit(Player *player) {
     entitySetPosition(&player->entity, 120, 88);
 }
 
-void playerUpdate(Player *player, const TileMap *tileMap) {
-    if (player == NULL) {
+void playerUpdate(Player *player, const TileMap *tileMap)
+{
+    if (player == NULL)
+    {
         return;
     }
 
     int dx = 0;
     int dy = 0;
 
-    if (inputIsHeld(KEY_LEFT)) {
+    if (inputIsHeld(KEY_LEFT))
+    {
         dx -= player->speed;
+        player->facingX = -1;
+        player->facingY = 0;
+    }
+    else if (inputIsHeld(KEY_RIGHT))
+    {
+        dx += player->speed;
         player->facingX = 1;
         player->facingY = 0;
     }
 
-    if (inputIsHeld(KEY_UP)) {
+    if (inputIsHeld(KEY_UP))
+    {
         dy -= player->speed;
         player->facingX = 0;
         player->facingY = -1;
+    }
+    else if (inputIsHeld(KEY_DOWN))
+    {
+        dy += player->speed;
+        player->facingX = 0;
+        player->facingY = 1;
     }
 
     if (dx != 0 || dy != 0)
     {
         collisionMoveEntity(tileMap, &player->entity, dx, dy);
     }
-
-    entityUpdate(&player->entity);
 }
 
 void playerSetPosition(Player *player, int x, int y) {

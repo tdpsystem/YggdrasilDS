@@ -64,15 +64,12 @@ void worldUpdate(World *world) {
     );
 }
 
-void worldRender(World *world) {
-    if (world == NULL) {
-        return;
-    }
+void worldRender(World *world)
+{
+    (void)world;
+
     backgroundRendererRenderTileMap(&world->tileMap, &world->camera);
     spriteRendererRenderPlayer(&world->player, &world->camera);
-    oamRendererRenderSprite(
-        entitySprite(playerEntity(&world->player))
-    );
 }
 
 Camera *worldCamera(World *world) {

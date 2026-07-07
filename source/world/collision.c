@@ -69,17 +69,26 @@ bool collisionCanMoveEntity(const TileMap *map, const Entity *entity, int dx, in
     );
 }
 
-void collisionMoveEntity(const TileMap *map, Entity *entity, int dx, int dy) {
-    if (map == NULL) {
+void collisionMoveEntity(const TileMap *map, Entity *entity, int dx, int dy)
+{
+    if (map == NULL || entity == NULL)
+    {
         return;
     }
 
-    if (!entityIsSolid(entity)) {
+    if (!entityIsSolid(entity))
+    {
         entityMove(entity, dx, dy);
         return;
     }
 
-    if (collisionCanMoveEntity(map, entity, dx, 0)) {
+    if (collisionCanMoveEntity(map, entity, dx, 0))
+    {
+        entityMove(entity, dx, 0);
+    }
+
+    if (collisionCanMoveEntity(map, entity, 0, dy))
+    {
         entityMove(entity, 0, dy);
     }
 }
