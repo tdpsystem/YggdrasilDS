@@ -1,0 +1,11 @@
+# Hero Placeholder Sprite
+
+-g
+-gB4
+-gT FF00FF
+-gp
+-p
+-pS
+-ftc
+-fh!
+-o../../../../build_assets/hero_placeholder

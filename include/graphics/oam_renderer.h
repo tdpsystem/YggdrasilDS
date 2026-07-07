@@ -1,0 +1,8 @@
+//
+// Created by cdixo on 07/07/2026.
+//
+
+#ifndef COMBAT_SYSTEM_MD_OAM_RENDERER_H
+#define COMBAT_SYSTEM_MD_OAM_RENDERER_H
+
+#endif //COMBAT_SYSTEM_MD_OAM_RENDERER_H
