@@ -25,7 +25,16 @@ void worldInit(World *world) {
     tileMapInit(&world->tileMap);
     playerInit(&world->player);
 
-    mapLoaderLoad(MAP_ID_TEST, &world->tileMap);
+    if (!mapLoaderLoad(
+        MAP_ID_MANNHEIM_VILLAGE,
+        &world->tileMap
+        ))
+    {
+        mapLoaderLoad(
+            MAP_ID_TEST,
+            &world->tileMap
+            );
+    }
 
     cameraSetBounds(
         &world->camera,
@@ -66,7 +75,10 @@ void worldUpdate(World *world) {
 
 void worldRender(World *world)
 {
-    (void)world;
+    if (world == NULL)
+    {
+        return;
+    }
 
     backgroundRendererRenderTileMap(&world->tileMap, &world->camera);
     spriteRendererRenderPlayer(&world->player, &world->camera);

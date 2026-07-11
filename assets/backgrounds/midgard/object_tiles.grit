@@ -1,0 +1,8 @@
+-g
+-gB4
+
+-p
+
+-ftc
+
+-o../../source/generated/object_tiles

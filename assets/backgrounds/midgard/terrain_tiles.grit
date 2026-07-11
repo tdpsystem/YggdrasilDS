@@ -1,0 +1,11 @@
+-g
+-gB8
+-gR!
+
+-p
+
+-m!
+
+-ftc
+
+-o../../source/generated/terrain_tiles

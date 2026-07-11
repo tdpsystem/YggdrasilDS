@@ -2,6 +2,8 @@
 
 #include <stddef.h>
 
+#include "generated/mannheim_map.h"
+
 static void loadTestMap(TileMap *tileMap) {
     tileMapInit(tileMap);
 
@@ -20,8 +22,22 @@ static void loadTestMap(TileMap *tileMap) {
     }
 }
 
-static void loadMannheimVillage(TileMap *tileMap) {
-    loadTestMap(tileMap);
+static void loadMannheimVillage(TileMap *tileMap)
+{
+    tileMapInit(tileMap);
+
+    for (int y = 0; y < MANNHEIM_MAP_HEIGHT; y++)
+    {
+        for (int x = 0; x < MANNHEIM_MAP_WIDTH; x++)
+        {
+            tileMapSet(
+                tileMap,
+                x,
+                y,
+                mannheimMap[y * MANNHEIM_MAP_WIDTH + x]
+            );
+        }
+    }
 }
 
 static void loadIronwoodForest(TileMap *tileMap) {
