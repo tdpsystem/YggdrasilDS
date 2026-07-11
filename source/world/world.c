@@ -10,6 +10,8 @@
 #include "world/map_loader.h"
 #include "world/entity.h"
 
+#include "generated/mannheim_map.h"
+
 #define WORLD_SCREEN_WIDTH   256
 #define WORLD_SCREEN_HEIGHT  192
 
@@ -17,6 +19,12 @@
 #define WORLD_SCREEN_CENTER_Y (WORLD_SCREEN_HEIGHT / 2)
 
 void worldInit(World *world) {
+#define MANNHEIM_PIXEL_WIDTH  \
+(MANNHEIM_MAP_WIDTH * TILE_SIZE)
+
+#define MANNHEIM_PIXEL_HEIGHT \
+(MANNHEIM_MAP_HEIGHT * TILE_SIZE)
+
     if (world == NULL) {
         return;
     }
@@ -28,20 +36,19 @@ void worldInit(World *world) {
     if (!mapLoaderLoad(
         MAP_ID_MANNHEIM_VILLAGE,
         &world->tileMap
-        ))
-    {
+    )) {
         mapLoaderLoad(
             MAP_ID_TEST,
             &world->tileMap
-            );
+        );
     }
 
     cameraSetBounds(
         &world->camera,
         0,
         0,
-        TILEMAP_WIDTH * TILE_SIZE - WORLD_SCREEN_WIDTH,
-        TILEMAP_HEIGHT * TILE_SIZE - WORLD_SCREEN_HEIGHT
+        MANNHEIM_PIXEL_WIDTH - WORLD_SCREEN_WIDTH,
+        MANNHEIM_PIXEL_HEIGHT - WORLD_SCREEN_HEIGHT
     );
 
     cameraSetPosition(
@@ -51,10 +58,8 @@ void worldInit(World *world) {
     );
 }
 
-void worldUpdate(World *world)
-{
-    if (world == NULL)
-    {
+void worldUpdate(World *world) {
+    if (world == NULL) {
         return;
     }
 
@@ -72,10 +77,8 @@ void worldUpdate(World *world)
     cameraUpdate(&world->camera);
 }
 
-void worldRender(World *world)
-{
-    if (world == NULL)
-    {
+void worldRender(World *world) {
+    if (world == NULL) {
         return;
     }
 

@@ -49,15 +49,35 @@ bool collisionTileIsSolid(Tile tile)
     }
 }
 
-bool collisionPointIsSolid(const TileMap *map, int worldX, int worldY) {
-    if (map == NULL) {
+bool collisionPointIsSolid(
+    const TileMap *map,
+    int worldX,
+    int worldY
+)
+{
+    if (map == NULL)
+    {
+        return true;
+    }
+
+    if (
+        worldX < 0 ||
+        worldY < 0 ||
+        worldX >= map->width * TILE_SIZE ||
+        worldY >= map->height * TILE_SIZE
+    )
+    {
         return true;
     }
 
     int tileX = worldX / TILE_SIZE;
     int tileY = worldY / TILE_SIZE;
 
-    Tile tile = tileMapGet(map, tileX, tileY);
+    Tile tile = tileMapGet(
+        map,
+        tileX,
+        tileY
+    );
 
     return collisionTileIsSolid(tile);
 }

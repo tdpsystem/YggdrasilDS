@@ -185,6 +185,21 @@ void backgroundRendererBeginFrame(void)
 {
 }
 
+static int clampInt(int value, int minimum, int maximum)
+{
+    if (value < minimum)
+    {
+        return minimum;
+    }
+
+    if (value > maximum)
+    {
+        return maximum;
+    }
+
+    return value;
+}
+
 void backgroundRendererRenderTileMap(
     const TileMap *tileMap,
     const Camera *camera
@@ -199,20 +214,28 @@ void backgroundRendererRenderTileMap(
         return;
     }
 
-    /*
-     * Mannheim is static for this test, so upload it once.
-     * Set mapUploaded back to false whenever maps change.
-     */
     if (!mapUploaded)
     {
         uploadLogicalMap(tileMap);
         mapUploaded = true;
     }
 
+    int scrollX = clampInt(
+        cameraX(camera),
+        0,
+        MAP_LOGICAL_WIDTH * 16 - 256
+    );
+
+    int scrollY = clampInt(
+        cameraY(camera),
+        0,
+        MAP_LOGICAL_HEIGHT * 16 - 192
+    );
+
     bgSetScroll(
         bgId,
-        cameraX(camera),
-        cameraY(camera)
+        scrollX,
+        scrollY
     );
 }
 
