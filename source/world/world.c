@@ -51,12 +51,17 @@ void worldInit(World *world) {
     );
 }
 
-void worldUpdate(World *world) {
-    if (world == NULL) {
+void worldUpdate(World *world)
+{
+    if (world == NULL)
+    {
         return;
     }
 
-    playerUpdate(&world->player, &world->tileMap);
+    playerUpdate(
+        &world->player,
+        &world->tileMap
+    );
 
     cameraSetTarget(
         &world->camera,
@@ -65,12 +70,6 @@ void worldUpdate(World *world) {
     );
 
     cameraUpdate(&world->camera);
-
-    cameraSetPosition(
-        &world->camera,
-        cameraX(&world->camera),
-        cameraY(&world->camera)
-    );
 }
 
 void worldRender(World *world)

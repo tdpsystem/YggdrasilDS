@@ -2,8 +2,51 @@
 
 #include <stddef.h>
 
-bool collisionTileIsSolid(Tile tile) {
-    return tile == 1;
+bool collisionTileIsSolid(Tile tile)
+{
+    switch (tile)
+    {
+        /* Hedge */
+        case 3:
+
+            /* Cliffs */
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+
+            /* Water and shoreline */
+        case 27:
+        case 28:
+        case 29:
+        case 30:
+        case 31:
+        case 32:
+        case 33:
+        case 34:
+        case 35:
+        case 36:
+        case 37:
+        case 38:
+        case 39:
+        case 40:
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+            return true;
+
+            /* Grass and paths */
+        default:
+            return false;
+    }
 }
 
 bool collisionPointIsSolid(const TileMap *map, int worldX, int worldY) {
@@ -52,8 +95,15 @@ bool collisionRectIsSolid(const TileMap *map, int x, int y, int width, int heigh
     return false;
 }
 
-bool collisionCanMoveEntity(const TileMap *map, const Entity *entity, int dx, int dy) {
-    if (map == NULL) {
+bool collisionCanMoveEntity(
+    const TileMap *map,
+    const Entity *entity,
+    int dx,
+    int dy
+)
+{
+    if (map == NULL || entity == NULL)
+    {
         return false;
     }
 

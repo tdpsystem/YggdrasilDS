@@ -8,6 +8,8 @@
 
 #include "input/input.h"
 
+#include "util/debug.h"
+
 void playerInit(Player *player) {
     if (player == NULL) {
         return;
@@ -25,7 +27,7 @@ void playerInit(Player *player) {
 
 void playerUpdate(Player *player, const TileMap *tileMap)
 {
-    if (player == NULL)
+    if (player == NULL || tileMap == NULL)
     {
         return;
     }
@@ -39,7 +41,8 @@ void playerUpdate(Player *player, const TileMap *tileMap)
         player->facingX = -1;
         player->facingY = 0;
     }
-    else if (inputIsHeld(KEY_RIGHT))
+
+    if (inputIsHeld(KEY_RIGHT))
     {
         dx += player->speed;
         player->facingX = 1;
@@ -52,7 +55,8 @@ void playerUpdate(Player *player, const TileMap *tileMap)
         player->facingX = 0;
         player->facingY = -1;
     }
-    else if (inputIsHeld(KEY_DOWN))
+
+    if (inputIsHeld(KEY_DOWN))
     {
         dy += player->speed;
         player->facingX = 0;
@@ -61,8 +65,15 @@ void playerUpdate(Player *player, const TileMap *tileMap)
 
     if (dx != 0 || dy != 0)
     {
-        collisionMoveEntity(tileMap, &player->entity, dx, dy);
+        collisionMoveEntity(
+            tileMap,
+            &player->entity,
+            dx,
+            dy
+        );
     }
+
+    entityUpdate(&player->entity);
 }
 
 void playerSetPosition(Player *player, int x, int y) {
